@@ -68,5 +68,6 @@ def index():
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
-    port = int(os.environ.get('PORT', 5000))
-    serve(app, host='0.0.0.0', port=port)
+    # port = int(os.environ.get('PORT', 5000))
+    # serve(app, host='0.0.0.0', port=port)
+    app.run(port=8080, host='')
