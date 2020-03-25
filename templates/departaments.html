@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <meta charset="UTF-8">
+    <h2 align="center">Тотемные животные по зороастрийскому календарю, выберите и согласно их и современным раздумьям напишем</h2>
+                            <div class="form-group">
+    {% for animal in users %}
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="animal" id="{{ animal.nick }}" value="{{ animal.nick }}" checked>
+                                          <label class="form-check-label" for="{{ animal.nick }}">
+                                            {{ animal.animal }}
+                                          </label>
+                                        </div>
+
+    {% endfor %}
+                                    </div>
+{% endblock %}

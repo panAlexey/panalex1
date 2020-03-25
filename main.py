@@ -1,6 +1,24 @@
 # app.py
 from flask import Flask, request, jsonify, render_template
+from data import db_session
+from data.animals import Animals
+
 app = Flask(__name__)
+
+name_base = "cats.sqlite"
+name_base = "db/" + name_base
+db_session.global_init(name_base)
+
+
+@app.route('/animals')
+def departments():
+    print("*****************")
+    session = db_session.create_session()
+    print('-----------')
+    animals = session.query(Animals).all()
+    # return "Hello World"
+    return render_template('departaments.html', users=animals)
+
 
 @app.route('/getmsg/', methods=['GET'])
 def respond():
