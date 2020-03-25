@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c1bb441-6d24-4103-ae81-99bb8dceb3af" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="8c1bb441-6d24-4103-ae81-99bb8dceb3af" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,9 +14,10 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="187">
+              <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
               <folding>
+                <element signature="e#9#67#0" expanded="true" />
                 <element signature="e#150#752#0" />
                 <element signature="e#819#1312#0" />
                 <element signature="e#1386#1458#0" />
@@ -307,6 +306,7 @@
         <state relative-caret-position="187">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
+            <element signature="e#9#67#0" expanded="true" />
             <element signature="e#150#752#0" />
             <element signature="e#819#1312#0" />
             <element signature="e#1386#1458#0" />
@@ -378,9 +378,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="187">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding>
+            <element signature="e#9#67#0" expanded="true" />
             <element signature="e#150#752#0" />
             <element signature="e#819#1312#0" />
             <element signature="e#1386#1458#0" />
