@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 name_base = "cats.sqlite"
 name_base = "db/" + name_base
-db_session.global_init(name_base)
+# db_session.global_init(name_base)
 
 
 # @app.route('/animals')
