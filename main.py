@@ -1,7 +1,7 @@
 # app.py
 from flask import Flask, request, jsonify, render_template
-# from data import db_session
-# from data.animals import Animals
+from data import db_session
+from data.animals import Animals
 # from waitress import serve
 # import os
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 name_base = "cats.sqlite"
 name_base = "db/" + name_base
-# db_session.global_init(name_base)
+db_session.global_init(name_base)
 
 
 # @app.route('/animals')
