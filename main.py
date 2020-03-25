@@ -2,8 +2,8 @@
 from flask import Flask, request, jsonify, render_template
 # from data import db_session
 # from data.animals import Animals
-# from waitress import serve
-# import os
+from waitress import serve
+import os
 
 app = Flask(__name__)
 
@@ -68,6 +68,6 @@ def index():
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
-    # port = int(os.environ.get('PORT', 5000))
-    # serve(app, host='0.0.0.0', port=port)
-    app.run(threaded=True, port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    serve(app, host='0.0.0.0', port=port)
+    # app.run(threaded=True, port=5000)
