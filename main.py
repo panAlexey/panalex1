@@ -11,7 +11,7 @@ dirpath = os.path.dirname(__file__)
 app = Flask(__name__)
 
 name_base = "cats.sqlite"
-name_base = dirpath+"/db/" + name_base
+name_base = name_base
 
 db_session.global_init(name_base)
 
