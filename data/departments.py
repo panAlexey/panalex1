@@ -5,6 +5,7 @@ from .db_session import SqlAlchemyBase
 from flask_login import UserMixin
 from sqlalchemy_serializer import SerializerMixin
 
+
 class Department(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'departments'
 
@@ -17,4 +18,4 @@ class Department(SqlAlchemyBase, UserMixin, SerializerMixin):
     user = orm.relation('User')
 
     def __repr__(self):
-        return f'<Department> {self.id} {self.title} {self.email}'
+        return f'<Department> {self.id} {self.name_department} {self.email}'
