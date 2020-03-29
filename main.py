@@ -1,25 +1,29 @@
 # app.py
 from flask import Flask, request, jsonify, render_template
-# from data import db_session
-# from data.animals import Animals
-from waitress import serve
+from data import db_session
+from data.animals import Animals
+# from waitress import serve # если используем gunicorn то waitress не нужен
 import os
+
+dirpath = os.path.dirname(__file__)
+
 
 app = Flask(__name__)
 
 name_base = "cats.sqlite"
-name_base = "db/" + name_base
-# db_session.global_init(name_base)
+name_base = name_base
+
+db_session.global_init(name_base)
 
 
-# @app.route('/animals')
-# def departments():
-#     print("*****************")
-#     session = db_session.create_session()
-#     print('-----------')
-#     animals = session.query(Animals).all()
-#     # return "Hello World"
-#     return render_template('departaments.html', users=animals)
+@app.route('/animals')
+def departments():
+    print("*****************")
+    session = db_session.create_session()
+    print('-----------')
+    animals = session.query(Animals).all()
+    # return "Hello World"
+    return render_template('departaments.html', users=animals)
 
 
 @app.route('/getmsg/', methods=['GET'])
@@ -45,6 +49,7 @@ def respond():
     # Return the response in json format
     return jsonify(response)
 
+
 @app.route('/post/', methods=['POST'])
 def post_something():
     param = request.form.get('name')
@@ -52,22 +57,24 @@ def post_something():
     # You can add the test cases you made in the previous function, but in our case here you are just testing the POST functionality
     if param:
         return jsonify({
-            "Message": f"Welcome {name} to our awesome platform!!",
+            "Message": f"Welcome {param} to our awesome platform!!",
             # Add this option to distinct the POST request
-            "METHOD" : "POST"
+            "METHOD": "POST"
         })
     else:
         return jsonify({
             "ERROR": "no name found, please send a name."
         })
 
+
 # A welcome message to test our server
 @app.route('/')
 def index():
     return render_template('index.html', title='Вебсервис', username='Alexis')
 
+
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
     port = int(os.environ.get('PORT', 5000))
-    serve(app, host='0.0.0.0', port=port)
-    # app.run(threaded=True, port=5000)
+    # serve(app, host='0.0.0.0', port=port)
+    app.run(threaded=True, port=5000)  # если используем gunicorn то waitress не нужен
