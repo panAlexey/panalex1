@@ -10,7 +10,7 @@ dirpath = os.path.dirname(__file__)
 
 app = Flask(__name__)
 
-name_base = "cats.sqlite"
+name_base = "db/cats.sqlite"
 name_base = name_base
 
 db_session.global_init(name_base)
@@ -18,12 +18,13 @@ db_session.global_init(name_base)
 
 @app.route('/animals')
 def departments():
-    print("*****************")
+    # print("*****************")
     session = db_session.create_session()
-    print('-----------')
-    animals = session.query(Animals).all()
+    # print('-----------')
+    animalq = session.query(Animals).all()
+    # print(animalq)
     # return "Hello World"
-    return render_template('departaments.html', users=animals)
+    return render_template('departaments.html', users=animalq, title='capitan')
 
 
 @app.route('/getmsg/', methods=['GET'])
