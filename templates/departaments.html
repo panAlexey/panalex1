@@ -7,14 +7,12 @@
 <div class="form-group">
                                 <div class="container">
 <div class="row">
-    {% for animal in users %}    <div class="col-sm-4">
-     <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="animal" id="{{ animal.nick }}" value="{{ animal.id }},{{ animal.nick }}" checked>
-                                          <label class="form-check-label" for="{{ animal.nick }}">
-                                            {{ animal.animal }}
-                                          </label>
-                                        </div>
-    </div>
+    {% for animal in users %}
+    <div class="col-sm-4"><div class="form-check">
+         <input class="form-check-input" type="radio" name="animal" id="{{ animal.nick }}"
+                value="{{ animal.id }},{{ animal.nick }},{{ animal.animal }},{{ animal.count }} " checked>
+         <label class="form-check-label" for="{{ animal.nick }}">{{ animal.animal }}</label>
+     </div></div>
     {% endfor %}</div> </div></div>
         <p><input type="submit">Выбрать</p>
                             </form>

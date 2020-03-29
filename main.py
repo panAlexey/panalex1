@@ -30,7 +30,13 @@ def departments():
     else:
         print('POST')
         print(request.form['animal'])
-        return render_template('index.html', title='Вебсервис', username='ПАРНИ')
+        ans = request.form['animal'].split(',')
+        session = db_session.create_session()
+        animals = session.query(Animals).filter(Animals.id == ans[0]).first()
+        animals.count += 1
+        #     print(animals)
+        session.commit()
+        return render_template('index.html', title=ans[2], username='ПАРНИ')
 
 
 
