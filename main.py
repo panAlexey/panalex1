@@ -7,7 +7,6 @@ import os
 
 dirpath = os.path.dirname(__file__)
 
-
 app = Flask(__name__)
 
 name_base = "db/cats.sqlite"
@@ -37,7 +36,6 @@ def departments():
         #     print(animals)
         session.commit()
         return render_template('index.html', title=ans[2], username='ПАРНИ')
-
 
 
 @app.route('/getmsg/', methods=['GET'])
@@ -79,6 +77,22 @@ def post_something():
         return jsonify({
             "ERROR": "no name found, please send a name."
         })
+
+
+@app.route('/diags')
+def diags():
+    session = db_session.create_session()
+    count = 0
+    ms = []
+    for ch in session.query(Animals).filter(Animals.count > 0):
+        count += ch.count
+        # print(ch.animal, ch.count)
+        ms.append([ch.animal, ch.count])
+    for inum, ch in enumerate(ms):
+        ms[inum][1] = ms[inum][1] / count * 100
+    # print(ms)
+    ms.insert(0, ['Животное', 'Процент'])
+    return render_template('diagramma.html', title='Вебсервис', username='Alexis', data=ms)
 
 
 # A welcome message to test our server
