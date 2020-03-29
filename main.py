@@ -16,15 +16,22 @@ name_base = name_base
 db_session.global_init(name_base)
 
 
-@app.route('/animals')
+@app.route('/animals', methods=['GET', 'POST'])
 def departments():
     # print("*****************")
-    session = db_session.create_session()
-    # print('-----------')
-    animalq = session.query(Animals).all()
-    # print(animalq)
-    # return "Hello World"
-    return render_template('departaments.html', users=animalq, title='capitan')
+    if request.method == 'GET':
+        print('GET')
+        session = db_session.create_session()
+        # print('-----------')
+        animalq = session.query(Animals).all()
+        # print(animalq)
+        # return "Hello World"
+        return render_template('departaments.html', users=animalq, title='capitan')
+    else:
+        print('POST')
+        print(request.form['animal'])
+        return render_template('index.html', title='Вебсервис', username='ПАРНИ')
+
 
 
 @app.route('/getmsg/', methods=['GET'])
