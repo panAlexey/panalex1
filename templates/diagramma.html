@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>{{ data }}</div>
+
   <script src="https://www.google.com/jsapi"></script>
   <script>
    google.load("visualization", "1", {packages:["corechart"]});
@@ -13,7 +13,7 @@
     ms = []
     var arrLength = [];
     for (var i = 0; i < str3.length; i++) {arrLength[i] = [str3[i].split(', ')[0], parseFloat(str3[i].split(', ')[1])]}
-    str4  = 'Выбор людей, по тотемам или по календарю' + str3 + " " + arrLength;
+    str4  = 'Выбор людей, по тотемам или по календарю';
 
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Month');

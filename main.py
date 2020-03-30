@@ -33,9 +33,9 @@ def departments():
         session = db_session.create_session()
         animals = session.query(Animals).filter(Animals.id == ans[0]).first()
         animals.count += 1
-        #     print(animals)
+        print(animals.desc)
         session.commit()
-        return render_template('index.html', title=ans[2], username='ПАРНИ')
+        return render_template('answer.html', title=ans[2], username='Ребята', desc=animals.desc)
 
 
 @app.route('/getmsg/', methods=['GET'])
