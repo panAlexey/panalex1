@@ -20,6 +20,7 @@ login_manager.init_app(app)
 name_base = "db/cats.sqlite"
 name_base = name_base
 login = -1
+page = 1
 db_session.global_init(name_base)
 
 
@@ -98,6 +99,7 @@ def register():
 @app.route('/animals', methods=['GET', 'POST'])
 def departments():
     # print("*****************")
+    global page
     if request.method == 'GET':
         print('GET')
         session = db_session.create_session()
@@ -108,6 +110,7 @@ def departments():
         return render_template('departaments.html', users=animalq, title='capitan',
                                name='Тотемные животные по зороастрийскому календарю, выберите и согласно их и современным раздумьям напишем')
     else:
+        page = 1
         print('POST')
         print(request.form['animal'])
         ans = request.form['animal'].split(',')
@@ -139,12 +142,14 @@ def departments():
         animals.count += 1
         print(animals.desc)
         session.commit()
-        return render_template('answer.html', title=ans[2], username='Ребята', desc=animals.desc)
+        return redirect("/diags")
+        # return render_template('answer.html', title=ans[2], username='Ребята', desc=animals.desc)
 
 
 @app.route('/plants', methods=['GET', 'POST'])
 def departments2():
     # print("*****************")
+    global page
     if request.method == 'GET':
         print('GET')
         session = db_session.create_session()
@@ -155,36 +160,17 @@ def departments2():
         return render_template('departaments.html', users=animalq, title='capitan',
                                name='Деревья по друидскому календарю')
     else:
+        page = 2
         print('POST')
         print(request.form['animal'])
         ans = request.form['animal'].split(',')
         session = db_session.create_session()
-        animals = session.query(Animals).filter(Animals.id == ans[0]).first()
-        if current_user.is_authenticated:
-            cr = session.query(User).filter(User.name == current_user.name).first()
-            print(cr.id)
-            if str(cr.id) not in animals.users.split(","):
-                print(cr.id, '--------------------')
-                animals.countReg += 1
-                if animals.users != "":
-                    animals.users =  str(animals.users) + ","
-                else:
-                    animals.users = ""
-                animals.users = str(animals.users) + str(cr.id)
-            print(animals.id)
-
-            if str(animals.id) not in cr.animals.split(","):
-                print(animals.id, '----------------')
-                if cr.animals != "":
-                    cr.animals =  str(cr.animals) + ","
-                else:
-                    cr.animals = ""
-                cr.animals = str(cr.animals) + str(animals.id)
-            print('auth_success')
+        animals = session.query(Plants).filter(Plants.id == ans[0]).first()
         animals.count += 1
         print(animals.desc)
         session.commit()
-        return render_template('answer.html', title=ans[2], username='Ребята', desc=animals.desc)
+        return redirect("/diags")
+        # return render_template('answer.html', title=ans[2], username='Ребята', desc=animals.desc)
 
 
 @app.route('/getmsg/', methods=['GET'])
@@ -230,13 +216,22 @@ def post_something():
 
 @app.route('/diags')
 def diags():
+    global page
     session = db_session.create_session()
     count = 0
     ms = []
-    for ch in session.query(Animals).filter(Animals.count > 0):
-        count += ch.count
-        # print(ch.animal, ch.count)
-        ms.append([ch.animal, ch.count])
+    if page == 1:
+        print(page, page, page)
+        for ch in session.query(Animals).filter(Animals.count > 0):
+            count += ch.count
+            # print(ch.animal, ch.count)
+            ms.append([ch.animal, ch.count])
+    else:
+        print(page, page, page)
+        for ch in session.query(Plants).filter(Plants.count > 0):
+            count += ch.count
+            # print(ch.animal, ch.count)
+            ms.append([ch.animal, ch.count])
     for inum, ch in enumerate(ms):
         ms[inum][1] = ms[inum][1] / count * 100
     # print(ms)
@@ -247,6 +242,7 @@ def diags():
 # A welcome message to test our server
 @app.route('/')
 def index():
+    page = 1
     return render_template('index.html', title='Вебсервис', username='Alexis')
 
 
