@@ -116,20 +116,22 @@ def departments():
         if current_user.is_authenticated:
             cr = session.query(User).filter(User.name == current_user.name).first()
             print(cr.id)
-            if str(cr.id) not in animals.users.split(","):
+            anmls = str(animals.users)
+            if str(cr.id) not in anmls.split(","):
                 print(cr.id, '--------------------')
                 animals.countReg += 1
-                if animals.users != "":
-                    animals.users =  str(animals.users) + ","
+                if anmls != "":
+                    animals.users =  anmls + ","
                 else:
                     animals.users = ""
-                animals.users = str(animals.users) + str(cr.id)
+                animals.users = animals.users + str(cr.id)
             print(animals.id)
 
-            if str(animals.id) not in cr.animals.split(","):
+            anmls = str(cr.animals)
+            if str(animals.id) not in anmls.split(","):
                 print(animals.id, '----------------')
-                if cr.animals != "":
-                    cr.animals =  str(cr.animals) + ","
+                if anmls != "":
+                    cr.animals =  anmls + ","
                 else:
                     cr.animals = ""
                 cr.animals = str(cr.animals) + str(animals.id)
