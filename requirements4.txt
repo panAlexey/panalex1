@@ -21,7 +21,7 @@ Markdown==3.0.1
 MarkupSafe==1.1.1
 MouseInfo==0.1.2
 netifaces==0.10.9
-Pillow==5.4.1
+Pillow==8.1.1
 PyAutoGUI==0.9.48
 pycparser==2.19
 pygame==1.9.6
